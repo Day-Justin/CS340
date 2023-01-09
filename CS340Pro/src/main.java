@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class main {
 
     public static void main(String[] args) {
@@ -43,16 +45,26 @@ public class main {
 //            s[i].setName("Student " + String.valueOf(i));
 //        }
 
-        Customer customer = new Customer("Random Thread");
-        Clerk clerk = new Clerk("Random Thread");
-        Checkout_clerk checkout = new Checkout_clerk("Random Thread");
+        Random random = new Random();
+        int randIter = random.nextInt(10);
 
-        Thread customerThread = new Thread(customer);
-        customerThread.start();
-        Thread clerkThread = new Thread(clerk);
-        clerkThread.start();
-        Thread checkoutThread = new Thread(checkout);
-        checkoutThread.start();
+        for (int i = 0; i <= randIter; i++) {
+
+            int randID = random.nextInt(10);
+
+            Customer customer = new Customer("Random Thread " + Integer.toString(randID));
+            Clerk clerk = new Clerk("Random Thread " + Integer.toString(randID));
+            Checkout_clerk checkout = new Checkout_clerk("Random Thread " + Integer.toString(randID));
+
+            Thread customerThread = new Thread(customer);
+            customerThread.start();
+            Thread clerkThread = new Thread(clerk);
+            clerkThread.start();
+            Thread checkoutThread = new Thread(checkout);
+            checkoutThread.start();
+
+        }
+
     }
 
 }
